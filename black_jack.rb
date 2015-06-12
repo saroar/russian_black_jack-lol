@@ -1,7 +1,6 @@
 # Black Jack
 
 def calculate_total(cards)
-    # [["a", "3"], ["b", "2"], ["a", "1"], ["a", "2"], ["b", "3"], ["b", "1"]]
     arr = cards.map { |e| e[1] }
 
     total = 0
@@ -72,7 +71,7 @@ while mytotal < 21
     next
   end
 
-  if hit_or_stay == "S"
+  if hit_or_stay == "s"
     puts "#{name} choose stay"
     break
   end
@@ -134,6 +133,7 @@ puts ""
 puts "#{name} cards: "
 mycards.each do |card|
   puts "=> #{card}"
+  puts "#{name}  your total is now: #{mytotal}"
 end
 puts ""
 
