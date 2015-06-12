@@ -15,7 +15,7 @@ def calculate_total(cards)
     end
 
   # correct for Aces
-  arr.select { |e| e == "Ace"}.count.times do
+  arr.select { |e| e == "Ace" }.count.times do
     total -= 10 if total > 21
   end
     total
@@ -38,6 +38,7 @@ deck.shuffle!
 
 # Deal cards
 
+
 mycards = []
 dealearcards = []
 
@@ -50,16 +51,33 @@ dealertotal = calculate_total(dealearcards)
 mytotal = calculate_total(mycards)
 
 # Showing the cards
-puts "Dealer has : #{dealearcards[0]} and #{dealearcards[1]}, for a total of #{dealertotal}"
-puts "#{name} have : #{mycards[0]} and #{mycards[1]}, for a total of #{mytotal}"
+
+loop do
+begin
+puts "Dealer's cards: "
+dealearcards.each do |card|
+  puts "=> #{card[0]} of #{card[1]}"
+end
+puts "Dealer's total is : #{dealertotal}"
+
+puts ""
+
+
+puts "#{name}'s Cards"
+mycards.each do |card|
+  puts "=> #{card[0]} of #{card[1]}"
+end
+puts "#{name}'s total is: #{mytotal}"
 
 puts ""
 
 # Player Card
 
+
+
 if mytotal == 21
   puts "Congratulation #{name} HIT blackjack! #{name} you win"
-  exit
+  system 'clear'
 end
 
 while mytotal < 21
@@ -87,10 +105,8 @@ while mytotal < 21
 
   if mytotal == 21
     puts "Congratulation #{name} HIT blackjack! #{name} you win!"
-    exit
   elsif mytotal > 21
     puts "Sorry, it looks like #{name} you buested"
-    exit
   end
 
 end
@@ -116,6 +132,7 @@ while dealertotal < 17
     exit
   elsif dealertotal > 21
     puts "Congratulation,dealer buested! #{name} you win!"
+    puts "#{name}  your total is now: #{mytotal}"
     exit
   end
 end
@@ -145,4 +162,11 @@ else
   puts "Its tie!"
 end
 
-exit
+puts "#{name} would you like to play again ? YES(y) or NO(n)"
+ break unless gets.chomp.downcase == 'y'
+ system 'clear'
+ end
+
+end
+
+puts "Thanks for play with us see u next time until have good time :)"
