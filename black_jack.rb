@@ -1,7 +1,8 @@
 # Black Jack
+require 'pry'
 
 def calculate_total(cards)
-    arr = cards.map { |e| e[1] }
+    arr = cards.map { |card| card[1] }
 
     total = 0
     arr.each do |value|
@@ -52,13 +53,12 @@ mytotal = calculate_total(mycards)
 
 # Showing the cards
 
-loop do
 begin
 puts "Dealer's cards: "
 dealearcards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
 end
-puts "Dealer's total is : #{dealertotal}"
+
 
 puts ""
 
@@ -73,11 +73,9 @@ puts ""
 
 # Player Card
 
-
-
 if mytotal == 21
   puts "Congratulation #{name} HIT blackjack! #{name} you win"
-  system 'clear'
+  exit
 end
 
 while mytotal < 21
@@ -92,6 +90,7 @@ while mytotal < 21
   if hit_or_stay == "s"
     puts "#{name} choose stay"
     break
+
   end
 
   #hit
@@ -121,8 +120,16 @@ end
 
 while dealertotal < 17
   #hit
+# dealearcards.each do |card|
+#   puts "=> #{card[0]} of #{card[1]}"
+# end
+
+
   new_card = deck.pop
-  puts "Dealing new card for dealer: #{new_card}"
+  puts "Dealing new card for dealer:"
+  new_card.each do |card|
+    puts "#{card[0]} of #{card[1]}"
+  end
   dealearcards << new_card
   dealertotal = calculate_total(dealearcards)
   puts "Dealer toatal is now: #{dealertotal}"
@@ -150,7 +157,7 @@ puts ""
 puts "#{name} cards: "
 mycards.each do |card|
   puts "=> #{card}"
-  puts "#{name}  your total is now: #{mytotal}"
+  #puts "#{name}  your total is now: #{mytotal}"
 end
 puts ""
 
@@ -162,11 +169,5 @@ else
   puts "Its tie!"
 end
 
-puts "#{name} would you like to play again ? YES(y) or NO(n)"
- break unless gets.chomp.downcase == 'y'
- system 'clear'
- end
 
 end
-
-puts "Thanks for play with us see u next time until have good time :)"
