@@ -55,10 +55,8 @@ mytotal = calculate_total(mycards)
 
 begin
 puts "Dealer's cards: "
-dealearcards.each do |card|
-  puts "=> #{card[0]} of #{card[1]}"
-end
-
+puts "=> #{dealearcards[0]}"
+puts "=> other card in hidden"
 
 puts ""
 
@@ -89,23 +87,24 @@ while mytotal < 21
 
   if hit_or_stay == "s"
     puts "#{name} choose stay"
+    puts ""
     break
-
   end
 
   #hit
   new_card = deck.pop
-  puts "Dealing card to player: #{new_card} and total now #{dealertotal}"
+  puts "Dealing card to player: #{new_card[0]}  other card in hidded "
   mycards << new_card
   mytotal = calculate_total(mycards)
-  puts "#{name}  your total is now: #{mytotal}"
+  puts "=> #{name}  your total is now: "
+  puts "=> #{mytotal}"
 
 #Buest
 
   if mytotal == 21
-    puts "Congratulation #{name} HIT blackjack! #{name} you win!"
+    puts "=> Congratulation #{name} HIT blackjack! #{name} you win!"
   elsif mytotal > 21
-    puts "Sorry, it looks like #{name} you buested"
+    puts "=> Sorry, it looks like #{name} you buested"
   end
 
 end
@@ -120,17 +119,12 @@ end
 
 while dealertotal < 17
   #hit
-# dealearcards.each do |card|
-#   puts "=> #{card[0]} of #{card[1]}"
-# end
-
-
   new_card = deck.pop
-  puts "Dealing new card for dealer:"
-  new_card.each do |card|
-    puts "#{card[0]} of #{card[1]}"
-  end
   dealearcards << new_card
+
+  puts "Dealing new card for dealer: "
+  puts "=> #{new_card[0]} of #{new_card[1]}"
+
   dealertotal = calculate_total(dealearcards)
   puts "Dealer toatal is now: #{dealertotal}"
 
@@ -139,7 +133,9 @@ while dealertotal < 17
     exit
   elsif dealertotal > 21
     puts "Congratulation,dealer buested! #{name} you win!"
-    puts "#{name}  your total is now: #{mytotal}"
+    puts "=> #{mycards}"
+    puts "=> #{name}  your total is now:"
+    puts "=> #{mytotal}"
     exit
   end
 end
@@ -150,14 +146,13 @@ end
 
 puts "Dealer's cards: "
 dealearcards.each do |card|
-  puts "=> #{card}"
+  puts "=> #{card[0]} of #{card[1]}"
 end
 puts ""
 
 puts "#{name} cards: "
 mycards.each do |card|
-  puts "=> #{card}"
-  #puts "#{name}  your total is now: #{mytotal}"
+  puts "=> #{card[0]} of #{card[1]}"
 end
 puts ""
 
