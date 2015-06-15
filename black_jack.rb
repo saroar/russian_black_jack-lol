@@ -40,40 +40,40 @@ deck.shuffle!
 # Deal cards
 
 
-mycards = []
-dealearcards = []
+my_cards = []
+dealear_cards = []
 
 2.times do
-  mycards << deck.pop
-  dealearcards << deck.pop
+  my_cards << deck.pop
+  dealear_cards << deck.pop
 end
 
-dealertotal = calculate_total(dealearcards)
-mytotal = calculate_total(mycards)
+dealer_total = calculate_total(dealear_cards)
+my_total = calculate_total(my_cards)
 
 # Showing the cards
 
 begin
   puts "Dealer's cards: "
-  puts "=> #{dealearcards[0].join(" of ")}"
+  puts "=> #{dealear_cards[0].join(" of ")}"
   puts "=> other card in hidden"
   puts ""
 
  puts "#{name}'s Cards"
- mycards.each do |card|
-  puts "=> #{card[0]} of #{card[1]}"
+ my_cards.each do |card|
+ puts "=> #{card[0]} of #{card[1]}"
 end
- puts "#{name}'s total is: #{mytotal}"
+ puts "#{name}'s total is: #{my_total}"
  puts ""
 
 # Player Card
 
-if mytotal == 21
+if my_total == 21
   puts "Congratulation #{name} HIT blackjack! #{name} you win"
   exit
 end
 
-while mytotal < 21
+while my_total < 21
   puts "What #{name} like to do? H/S?"
   hit_or_stay = gets.chomp.downcase
 
@@ -90,17 +90,21 @@ while mytotal < 21
 
   #hit
   new_card = deck.pop
-  puts "Dealing card to player: #{new_card[0]}  other card in hidded "
-  mycards << new_card
-  mytotal = calculate_total(mycards)
-  puts "=> #{name} your total is now: "
-  puts "=> #{mytotal}"
+  #puts "=> Dealing card to player: #{new_card}  other card in hidded "
+  puts "Dealing card to player"
+  puts "=> #{new_card.join(" of ")}"
+  puts "=> other card is hidden "
+  my_cards << new_card
+  my_total = calculate_total(my_cards)
+  puts ""
+  puts "#{name} your total is now: "
+  puts "=> #{my_total}"
 
 #Buest
 
-  if mytotal == 21
+  if my_total == 21
     puts "=> Congratulation #{name} HIT blackjack! #{name} you win!"
-  elsif mytotal > 21
+  elsif my_total > 21
     puts "=> Sorry, it looks like #{name} you buested"
     exit
   end
@@ -109,29 +113,28 @@ end
 
 # Dealer turn
 
-if dealertotal == 21
+if dealer_total == 21
   puts "Sorry, dealer hit blackjack #{name} you lose!"
   exit
 end
 
-while dealertotal < 17
-  #hit
-
+while dealer_total < 17
+  # Hit
   new_card = deck.pop
-  binding.pry
   puts "Dealing new card for dealer: "
   puts "=> #{new_card.join(" of ")}"
-  dealearcards << new_card
-  dealertotal = calculate_total(dealearcards)
-  puts "Dealer toatal is now: #{dealertotal}"
+  dealear_cards << new_card
+  dealer_total = calculate_total(dealear_cards)
+  puts "Dealer toatal is now: #{dealer_total}"
   puts ""
-  if dealertotal == 21
-    puts "Sorry,Dealer hit blackjack, #{name} you lose"
-    exit
-  elsif dealertotal > 21
-    puts "Congratulation,dealer buested! #{name} you win!"
-    exit
-  end
+
+if dealer_total == 21
+  puts "Sorry,Dealer hit blackjack, #{name} you lose"
+  exit
+elsif dealer_total > 21
+  puts "Congratulation,dealer buested! #{name} you win!"
+  exit
+ end
 end
 
 
@@ -139,23 +142,23 @@ end
 # compare hands
 
 puts "Dealer's cards: "
-dealearcards.each do |card|
+dealear_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
 end
-puts "The Dealer's total is #{dealertotal}"
+puts "The Dealer's total is #{dealer_total}"
 puts ""
 
 puts "#{name} cards: "
-mycards.each do |card|
+my_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
 end
-puts "#{name}'s total is #{mytotal}"
+puts "#{name}'s total is #{my_total}"
 puts ""
 
 
-if dealertotal > mytotal
+if dealer_total > my_total
   puts "Sorry, dealer win!"
-elsif dealertotal < mytotal
+elsif dealer_total < my_total
   puts "Congratulation #{name} you wins!"
 else
   puts "Its tie!"
