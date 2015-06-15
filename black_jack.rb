@@ -7,7 +7,7 @@ def calculate_total(cards)
   total = 0
     arr.each do |value|
       if value == "Ace"
-        total += 11
+         total += 11
       elsif value.to_i == 0 # J, Q, K
         total += 10
       else
@@ -59,15 +59,14 @@ begin
   puts "=> other card in hidden"
   puts ""
 
- puts "#{name}'s Cards"
- my_cards.each do |card|
- puts "=> #{card[0]} of #{card[1]}"
-end
- puts "#{name}'s total is: #{my_total}"
- puts ""
+  puts "#{name}'s Cards"
+  my_cards.each do |card|
+  puts "=> #{card[0]} of #{card[1]}"
+  end
+  puts "#{name}'s total is: #{my_total}"
+  puts ""
 
 # Player Card
-
 if my_total == 21
   puts "Congratulation #{name} HIT blackjack! #{name} you win"
   exit
@@ -78,15 +77,15 @@ while my_total < 21
   hit_or_stay = gets.chomp.downcase
 
   if !['h', 's'].include?(hit_or_stay)
-    puts "Error! #{name} must enter only H/S"
-    next
-  end
+  puts "Error! #{name} must enter only H/S"
+  next
+end
 
-  if hit_or_stay == "s"
-    puts "#{name} choose stay"
-    puts ""
-    break
-  end
+if hit_or_stay == "s"
+  puts "#{name} choose stay"
+  puts ""
+  break
+end
 
   #hit
   new_card = deck.pop
@@ -102,12 +101,12 @@ while my_total < 21
 
 #Buest
 
-  if my_total == 21
-    puts "=> Congratulation #{name} HIT blackjack! #{name} you win!"
-  elsif my_total > 21
-    puts "=> Sorry, it looks like #{name} you buested"
-    exit
-  end
+if my_total == 21
+  puts "=> Congratulation #{name} HIT blackjack! #{name} you win!"
+elsif my_total > 21
+  puts "=> Sorry, it looks like #{name} you buested"
+  exit
+ end
 end
 
 
