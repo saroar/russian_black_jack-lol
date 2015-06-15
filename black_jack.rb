@@ -68,78 +68,78 @@ begin
 
   puts "#{name}'s Cards"
   my_cards.each do |card|
-  puts "=> #{card.join(" of ")}"
+    puts "=> #{card.join(" of ")}"
   end
   puts "#{name}'s total is: #{my_total}"
   puts ""
 
 # Player Card
-if my_total == 21
-  puts "Congratulation #{name} HIT blackjack! #{name} you win"
-  exit
-end
+  if my_total == 21
+    puts "Congratulation #{name} HIT blackjack! #{name} you win"
+    exit
+  end
 
-while my_total < 21
-  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
-  hit_or_stay = gets.chomp.downcase
+  while my_total < 21
+    puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
+    hit_or_stay = gets.chomp.downcase
 
   if !['h', 's'].include?(hit_or_stay)
-  puts "Error! #{name} must enter only H/S"
-  next
-end
+      puts "Error! #{name} must enter only H/S"
+    next
+  end
 
-if hit_or_stay == "s"
-  puts "#{name} choose stay"
-  puts ""
-  break
-end
+  if hit_or_stay == "s"
+    puts "#{name} choose stay"
+    puts ""
+    break
+  end
 
   #hit
-  new_card = deck.pop
-  puts "Dealing card to player"
-  puts "=> #{new_card.join(" of ")}"
-  puts "=> other card is hidden "
-  my_cards << new_card
-  my_total = calculate_total(my_cards)
-  puts ""
-  puts "#{name}'s cards"
-  puts "=> #{new_card.join(" of ")}"
-  puts "#{name} your total is now: "
-  puts "=> #{my_total}"
+new_card = deck.pop
+puts "Dealing card to player"
+puts "=> #{new_card.join(" of ")}"
+puts "=> other card is hidden "
+my_cards << new_card
+my_total = calculate_total(my_cards)
+puts ""
+puts "#{name}'s cards"
+puts "=> #{new_card.join(" of ")}"
+puts "#{name} your total is now: "
+puts "=> #{my_total}"
 
 #Buest
 
-if my_total == 21
-  puts "Congratulation #{name} HIT blackjack! #{name} you win!"
+  if my_total == 21
+    puts "Congratulation #{name} HIT blackjack! #{name} you win!"
   elsif my_total > 21
-  puts "Sorry, it looks like #{name} you buested"
-  exit
+    puts "Sorry, it looks like #{name} you buested"
+    exit
+    end
   end
-end
 
 
 # Dealer turn
-if dealer_total == 21
-  puts "Sorry, dealer hit blackjack #{name} you lose!"
-  exit
-end
+  if dealer_total == 21
+    puts "Sorry, dealer hit blackjack #{name} you lose!"
+    exit
+  end
 
-while dealer_total < 17
-# Hit
-  new_card = deck.pop
-  puts "Dealing new card for dealer: "
-  puts "=> #{new_card.join(" of ")}"
-  dealear_cards << new_card
-  dealer_total = calculate_total(dealear_cards)
-  puts "Dealer toatal is now: #{dealer_total}"
-  puts ""
+  while dealer_total < 17
+  # Hit
+    new_card = deck.pop
+    puts "Dealing new card for dealer: "
+    puts "=> #{new_card.join(" of ")}"
+    dealear_cards << new_card
+    dealer_total = calculate_total(dealear_cards)
+    puts "Dealer toatal is now: #{dealer_total}"
+    puts ""
 
-if dealer_total == 21
-  puts "Sorry,Dealer hit blackjack, #{name} you lose"
-  exit
+  if dealer_total == 21
+    puts "Sorry,Dealer hit blackjack, #{name} you lose"
+    exit
   elsif dealer_total > 21
-  puts "Congratulation,dealer buested! #{name} you win!"
-  exit
+    puts "Congratulation,dealer buested! #{name} you win!"
+    exit
   end
 end
 
