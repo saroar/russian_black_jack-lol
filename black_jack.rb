@@ -120,10 +120,10 @@ end
 
 
 # Dealer turn
-  if dealer_total == 21
-    puts "Sorry, dealer hit blackjack #{name} you lose!"
-    exit
-  end
+if dealer_total == 21
+  puts "Sorry, dealer hit blackjack #{name} you lose!"
+  exit
+end
 
 while dealer_total < 17
 # Hit
