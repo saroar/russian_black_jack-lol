@@ -96,15 +96,12 @@ while my_total < 21
   new_card = deck.pop
   puts "Dealing card to player"
   puts "=> #{new_card.join(" of ")}"
-  puts "=> other card is hidden "
 
   my_cards << new_card
   my_total = calculate_total(my_cards)
   puts ""
 
   puts "#{name}'s cards"
-  puts "=> #{new_card.join(" of ")}"
-  puts "#{name} your total is now: "
   puts "=> #{my_total}"
 
 #Buest
