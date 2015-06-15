@@ -3,21 +3,19 @@ require 'pry'
 
 def calculate_total(cards)
   arr = cards.map { |card| card[1] }
-
   total = 0
-    arr.each do |value|
-      if value == "Ace"
-        total += 11
-      elsif value.to_i == 0 # J, Q, K
-        total += 10
-      else
-        total += value.to_i
-      end
+  arr.each do |value|
+    if value == "Ace"
+      total += 11
+    elsif value.to_i == 0 # J, Q, K
+      total += 10
+    else
+      total += value.to_i
     end
-
-    # correct for Aces
-    arr.select { |e| e == "Ace" }.count.times do
-    total -= 10 if total > 21
+  end
+  # correct for Aces
+  arr.select { |e| e == "Ace" }.count.times do
+  total -= 10 if total > 21
   end
   total
 end
