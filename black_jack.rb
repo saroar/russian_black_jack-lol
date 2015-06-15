@@ -27,18 +27,27 @@ end
 
 puts "----- Weclome to Black Jack -----"
 puts "Whats you name ?"
+
 name = gets.chomp.capitalize
+
+puts "Nice to meet you #{name}. Let's play some Blackjack!"
+puts ""
 
 suits = %w[Heart Diamond Spade Club]
 
 cards = %w[Ace 2 3 4 5 6 7 8 9 10 Jack Queen King]
 
 
+puts ".....Shuffling cards....."
+5.times do
+  print "....."
+  sleep 0.3
+end
+
 deck = suits.product(cards)
 deck.shuffle!
 
 # Deal cards
-
 
 my_cards = []
 dealear_cards = []
@@ -54,7 +63,7 @@ my_total = calculate_total(my_cards)
 # Showing the cards
 
 begin
-  puts "Dealer's cards: "
+  puts "\n\nDealer's cards: "
   puts "=> #{dealear_cards[0].join(" of ")}"
   puts "=> other card in hidden"
   puts ""
@@ -96,15 +105,17 @@ end
   my_cards << new_card
   my_total = calculate_total(my_cards)
   puts ""
+  puts "#{name}'s cards"
+  puts "=> #{new_card.join(" of ")}"
   puts "#{name} your total is now: "
   puts "=> #{my_total}"
 
 #Buest
 
 if my_total == 21
-  puts "=> Congratulation #{name} HIT blackjack! #{name} you win!"
+  puts "Congratulation #{name} HIT blackjack! #{name} you win!"
 elsif my_total > 21
-  puts "=> Sorry, it looks like #{name} you buested"
+  puts "Sorry, it looks like #{name} you buested"
   exit
  end
 end
@@ -151,11 +162,13 @@ puts "#{name}'s total is #{my_total}"
 puts ""
 
 
-if dealer_total > my_total
-  puts "Sorry, dealer win!"
-elsif dealer_total < my_total
-  puts "Congratulation #{name} you wins!"
-else
-  puts "Its tie!"
+ if dealer_total > my_total
+   puts "Sorry, dealer win!"
+ elsif dealer_total < my_total
+   puts "Congratulation #{name} you wins!"
+ else
+   puts "Its tie!"
+ end
 end
-end
+
+puts "\nThanks for playing BALCK JACK #{name}"
