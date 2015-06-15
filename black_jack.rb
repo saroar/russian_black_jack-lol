@@ -19,7 +19,7 @@ def calculate_total(cards)
     arr.select { |e| e == "Ace" }.count.times do
     total -= 10 if total > 21
   end
-    total
+  total
 end
 
 
@@ -70,7 +70,7 @@ begin
 
   puts "#{name}'s Cards"
   my_cards.each do |card|
-  puts "=> #{card[0]} of #{card[1]}"
+  puts "=> #{card.join(" of ")}"
   end
   puts "#{name}'s total is: #{my_total}"
   puts ""
@@ -84,16 +84,17 @@ end
 while my_total < 21
   puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
   hit_or_stay = gets.chomp.downcase
-  if !['h', 's'].include?(hit_or_stay)
-    puts "Error! #{name} must enter only H/S"
-    next
-  end
 
-  if hit_or_stay == "s"
-    puts "#{name} choose stay"
-    puts ""
-    break
-  end
+  if !['h', 's'].include?(hit_or_stay)
+  puts "Error! #{name} must enter only H/S"
+  next
+end
+
+if hit_or_stay == "s"
+  puts "#{name} choose stay"
+  puts ""
+  break
+end
 
   #hit
   new_card = deck.pop
@@ -110,11 +111,11 @@ while my_total < 21
 
 #Buest
 
-  if my_total == 21
-    puts "Congratulation #{name} HIT blackjack! #{name} you win!"
-    elsif my_total > 21
-    puts "Sorry, it looks like #{name} you buested"
-    exit
+if my_total == 21
+  puts "Congratulation #{name} HIT blackjack! #{name} you win!"
+  elsif my_total > 21
+  puts "Sorry, it looks like #{name} you buested"
+  exit
   end
 end
 
@@ -135,12 +136,12 @@ while dealer_total < 17
   puts "Dealer toatal is now: #{dealer_total}"
   puts ""
 
-  if dealer_total == 21
-    puts "Sorry,Dealer hit blackjack, #{name} you lose"
-    exit
+if dealer_total == 21
+  puts "Sorry,Dealer hit blackjack, #{name} you lose"
+  exit
   elsif dealer_total > 21
-    puts "Congratulation,dealer buested! #{name} you win!"
-    exit
+  puts "Congratulation,dealer buested! #{name} you win!"
+  exit
   end
 end
 
@@ -160,12 +161,12 @@ end
   puts ""
 
 
-  if dealer_total > my_total
-    puts "Sorry, dealer win!"
-    elsif dealer_total < my_total
-    puts "Congratulation #{name} you wins!"
-    else
-    puts "Its tie!"
+if dealer_total > my_total
+  puts "Sorry, dealer win!"
+  elsif dealer_total < my_total
+  puts "Congratulation #{name} you wins!"
+  else
+  puts "Its tie!"
   end
 end
 
