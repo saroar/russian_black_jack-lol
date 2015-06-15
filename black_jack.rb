@@ -82,7 +82,7 @@ if my_total == 21
 end
 
 while my_total < 21
-  puts "What #{name} like to do? H/S?"
+  puts "What #{name} like to do? H/S?. Meaning Hit/Stay"
   hit_or_stay = gets.chomp.downcase
 
   if !['h', 's'].include?(hit_or_stay)
@@ -114,7 +114,7 @@ end
 
 if my_total == 21
   puts "Congratulation #{name} HIT blackjack! #{name} you win!"
-elsif my_total > 21
+  elsif my_total > 21
   puts "Sorry, it looks like #{name} you buested"
   exit
  end
@@ -140,35 +140,36 @@ while dealer_total < 17
 if dealer_total == 21
   puts "Sorry,Dealer hit blackjack, #{name} you lose"
   exit
-elsif dealer_total > 21
+  elsif dealer_total > 21
   puts "Congratulation,dealer buested! #{name} you win!"
   exit
- end
+  end
 end
 
 # compare hands
-puts "Dealer's cards: "
-dealear_cards.each do |card|
+  puts "Dealer's cards: "
+  dealear_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
-end
-puts "The Dealer's total is #{dealer_total}"
-puts ""
+  end
+  puts "The Dealer's total is #{dealer_total}"
+  puts ""
 
-puts "#{name} cards: "
-my_cards.each do |card|
+  puts "#{name} cards: "
+  my_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
+  end
+  puts "#{name}'s total is #{my_total}"
+  puts ""
+
+
+if dealer_total > my_total
+  puts "Sorry, dealer win!"
+  elsif dealer_total < my_total
+  puts "Congratulation #{name} you wins!"
+  else
+  puts "Its tie!"
 end
-puts "#{name}'s total is #{my_total}"
-puts ""
 
-
- if dealer_total > my_total
-   puts "Sorry, dealer win!"
- elsif dealer_total < my_total
-   puts "Congratulation #{name} you wins!"
- else
-   puts "Its tie!"
- end
 end
 
-puts "\nThanks for playing BALCK JACK #{name}"
+puts "\nThanks for playing black jack #{name}"
