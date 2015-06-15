@@ -82,7 +82,7 @@ if my_total == 21
 end
 
 while my_total < 21
-  puts "What #{name} like to do? H/S?. Meaning Hit/Stay"
+  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter !"
   hit_or_stay = gets.chomp.downcase
 
   if !['h', 's'].include?(hit_or_stay)
