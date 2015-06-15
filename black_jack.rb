@@ -7,7 +7,7 @@ def calculate_total(cards)
   total = 0
     arr.each do |value|
       if value == "Ace"
-         total += 11
+     	  total += 11
       elsif value.to_i == 0 # J, Q, K
         total += 10
       else
@@ -15,8 +15,8 @@ def calculate_total(cards)
       end
     end
 
-  # correct for Aces
-  arr.select { |e| e == "Ace" }.count.times do
+    # correct for Aces
+    arr.select { |e| e == "Ace" }.count.times do
     total -= 10 if total > 21
   end
     total
@@ -111,7 +111,6 @@ end
 
 
 # Dealer turn
-
 if dealer_total == 21
   puts "Sorry, dealer hit blackjack #{name} you lose!"
   exit
@@ -136,10 +135,7 @@ elsif dealer_total > 21
  end
 end
 
-
-
 # compare hands
-
 puts "Dealer's cards: "
 dealear_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
