@@ -111,13 +111,13 @@ loop do
       puts "Congratulation #{name} HIT blackjack! #{name} you win!"
     elsif my_total > 21
       puts "Sorry, it looks like #{name} you buested"
-      exit
+
     end
   end
   # Dealer turn
   if dealer_total == 21
     puts "Sorry, dealer hit blackjack #{name} you lose!"
-    exit
+
   end
 
 
@@ -134,10 +134,10 @@ loop do
 
     if dealer_total == 21
       puts "Sorry,Dealer hit blackjack, #{name} you lose"
-      next # exit
+
     elsif dealer_total > 21
       puts "Congratulation,dealer buested! #{name} you win!"
-      next #exit
+
     end
   end
 
@@ -166,8 +166,9 @@ loop do
 
 end
   puts "do you like to play again y/n ?"
-  break unless gets.chomp.downcase == 'y'
+  unless gets.chomp.downcase == 'y'
+    puts "Thanks for play see u soon :) still have fun"
+    break
   end
+end
 
-exit
-puts "Thanks for play see u soon :) still have fun"
