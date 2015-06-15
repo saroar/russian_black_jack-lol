@@ -46,120 +46,128 @@ deck = suits.product(cards)
 deck.shuffle!
 
 # Deal cards
+loop do
+  begin
+  my_cards = []
+  dealear_cards = []
 
-my_cards = []
-dealear_cards = []
+  2.times do
+    my_cards << deck.pop
+    dealear_cards << deck.pop
+  end
 
-2.times do
-  my_cards << deck.pop
-  dealear_cards << deck.pop
-end
-
-dealer_total = calculate_total(dealear_cards)
-my_total = calculate_total(my_cards)
+  dealer_total = calculate_total(dealear_cards)
+  my_total = calculate_total(my_cards)
 
 # Showing the cards
-puts "\n\nDealer's cards: "
-puts "=> #{dealear_cards[0].join(" of ")}"
-puts "=> other card in hidden"
-puts ""
 
-puts "#{name}'s Cards"
-my_cards.each do |card|
-  puts "=> #{card.join(" of ")}"
-end
-puts "#{name}'s total is: #{my_total}"
-puts ""
-
-# Player turn
-if my_total == 21
-  puts "Congratulation #{name} HIT blackjack! #{name} you win"
-  exit
-end
-
-while my_total < 21
-  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
-  hit_or_stay = gets.chomp.downcase
-
-  if !['h', 's'].include?(hit_or_stay)
-    puts "Error! #{name} must enter only h/s"
-    next
-  end
-
-  if hit_or_stay == "s"
-    puts "#{name} choose stay"
-    puts ""
-    break
-  end
-
-#hit
-  new_card = deck.pop
-  puts "Dealing card to player"
-  puts "=> #{new_card.join(" of ")}"
-
-  my_cards << new_card
-  my_total = calculate_total(my_cards)
+  puts "\n\nDealer's cards: "
+  puts "=> #{dealear_cards[0].join(" of ")}"
+  puts "=> other card in hidden"
   puts ""
 
-  puts "#{name}'s cards"
-  puts "=> #{my_total}"
+  puts "#{name}'s Cards"
+  my_cards.each do |card|
+    puts "=> #{card.join(" of ")}"
+  end
+  puts "#{name}'s total is: #{my_total}"
+  puts ""
 
-#Buest
+  # Player turn
   if my_total == 21
-    puts "Congratulation #{name} HIT blackjack! #{name} you win!"
-  elsif my_total > 21
-    puts "Sorry, it looks like #{name} you buested"
+    puts "Congratulation #{name} HIT blackjack! #{name} you win"
     exit
   end
-end
-# Dealer turn
-if dealer_total == 21
-  puts "Sorry, dealer hit blackjack #{name} you lose!"
-  exit
-end
+
+  while my_total < 21
+    puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
+    hit_or_stay = gets.chomp.downcase
+
+    if !['h', 's'].include?(hit_or_stay)
+      puts "Error! #{name} must enter only h/s"
+      next
+    end
+
+    if hit_or_stay == "s"
+      puts "#{name} choose stay"
+      puts ""
+      break
+    end
+
+  #hit
+    new_card = deck.pop
+    puts "Dealing card to player"
+    puts "=> #{new_card.join(" of ")}"
+
+    my_cards << new_card
+    my_total = calculate_total(my_cards)
+    puts ""
+
+    puts "#{name}'s cards"
+    puts "=> #{my_total}"
+
+  #Buest
+    if my_total == 21
+      puts "Congratulation #{name} HIT blackjack! #{name} you win!"
+    elsif my_total > 21
+      puts "Sorry, it looks like #{name} you buested"
+      exit
+    end
+  end
+  # Dealer turn
+  if dealer_total == 21
+    puts "Sorry, dealer hit blackjack #{name} you lose!"
+    exit
+  end
 
 
-while dealer_total < 17
-# Hit
-  new_card = deck.pop
-  puts "Dealing new card for dealer: "
-  puts "=> #{new_card.join(" of ")}"
+  while dealer_total < 17
+  # Hit
+    new_card = deck.pop
+    puts "Dealing new card for dealer: "
+    puts "=> #{new_card.join(" of ")}"
 
-  dealear_cards << new_card
-  dealer_total = calculate_total(dealear_cards)
-  puts "Dealer toatal is now: #{dealer_total}"
+    dealear_cards << new_card
+    dealer_total = calculate_total(dealear_cards)
+    puts "Dealer toatal is now: #{dealer_total}"
+    puts ""
+
+    if dealer_total == 21
+      puts "Sorry,Dealer hit blackjack, #{name} you lose"
+      next # exit
+    elsif dealer_total > 21
+      puts "Congratulation,dealer buested! #{name} you win!"
+      next #exit
+    end
+  end
+
+  # compare hands
+  puts "\nDealer's cards: "
+  dealear_cards.each do |card|
+    puts "=> #{card.join(" of ")}"
+  end
+  puts "The Dealer's total is #{dealer_total}"
   puts ""
 
-  if dealer_total == 21
-    puts "Sorry,Dealer hit blackjack, #{name} you lose"
-    nextare
-  elsif dealer_total > 21
-    puts "Congratulation,dealer buested! #{name} you win!"
-    next
+  puts "#{name} cards: "
+  my_cards.each do |card|
+    puts "=> #{card.join(" of ")}"
   end
-end
+  puts "#{name}'s total is #{my_total}"
+  puts ""
 
-# compare hands
-puts "Dealer's cards: "
-dealear_cards.each do |card|
-  puts "=> #{card.join(" of ")}"
-end
-puts "The Dealer's total is #{dealer_total}"
-puts ""
+  if dealer_total > my_total
+    puts "Sorry, dealer win!"
+  elsif dealer_total < my_total
+    puts "Congratulation #{name} you wins!"
+  else
+    puts "Its tie!"
+  end
 
-puts "#{name} cards: "
-my_cards.each do |card|
-  puts "=> #{card.join(" of ")}"
 end
-puts "#{name}'s total is #{my_total}"
-puts ""
-
-if dealer_total > my_total
-  puts "Sorry, dealer win!"
-elsif dealer_total < my_total
-  puts "Congratulation #{name} you wins!"
-else
-  puts "Its tie!"
-end
+  puts "do you like to play again y/n ?"
+  break unless gets.chomp.downcase == 'y'
+  end
 
 exit
+puts "Thanks for play see u soon :) still have fun"
