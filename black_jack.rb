@@ -82,13 +82,8 @@ if my_total == 21
 end
 
 while my_total < 21
-<<<<<<< HEAD
-  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter."
-=======
-  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter!"
->>>>>>> 1e1efb3605d13599e27564080b8d86a798876342
+  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
   hit_or_stay = gets.chomp.downcase
-
   if !['h', 's'].include?(hit_or_stay)
     puts "Error! #{name} must enter only H/S"
     next
