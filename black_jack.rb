@@ -59,111 +59,108 @@ dealer_total = calculate_total(dealear_cards)
 my_total = calculate_total(my_cards)
 
 # Showing the cards
+puts "\n\nDealer's cards: "
+puts "=> #{dealear_cards[0].join(" of ")}"
+puts "=> other card in hidden"
+puts ""
 
-begin
-  puts "\n\nDealer's cards: "
-  puts "=> #{dealear_cards[0].join(" of ")}"
-  puts "=> other card in hidden"
+puts "#{name}'s Cards"
+my_cards.each do |card|
+  puts "=> #{card.join(" of ")}"
+end
+puts "#{name}'s total is: #{my_total}"
+puts ""
+
+# Player turn
+if my_total == 21
+  puts "Congratulation #{name} HIT blackjack! #{name} you win"
+  exit
+end
+
+while my_total < 21
+  puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
+  hit_or_stay = gets.chomp.downcase
+
+if !['h', 's'].include?(hit_or_stay)
+  puts "Error! #{name} must enter only H/S"
+  next
+end
+
+if hit_or_stay == "s"
+  puts "#{name} choose stay"
   puts ""
+  break
+end
 
-  puts "#{name}'s Cards"
-  my_cards.each do |card|
-    puts "=> #{card.join(" of ")}"
-  end
-  puts "#{name}'s total is: #{my_total}"
-  puts ""
-
-# Player Card
-  if my_total == 21
-    puts "Congratulation #{name} HIT blackjack! #{name} you win"
-    exit
-  end
-
-  while my_total < 21
-    puts "What #{name} like to do? Hit/Stay => click (h/s?) and enter.."
-    hit_or_stay = gets.chomp.downcase
-
-  if !['h', 's'].include?(hit_or_stay)
-      puts "Error! #{name} must enter only H/S"
-    next
-  end
-
-  if hit_or_stay == "s"
-    puts "#{name} choose stay"
-    puts ""
-    break
-  end
-
-  #hit
+#hit
 new_card = deck.pop
 puts "Dealing card to player"
 puts "=> #{new_card.join(" of ")}"
 puts "=> other card is hidden "
+
 my_cards << new_card
 my_total = calculate_total(my_cards)
 puts ""
+
 puts "#{name}'s cards"
 puts "=> #{new_card.join(" of ")}"
 puts "#{name} your total is now: "
 puts "=> #{my_total}"
 
 #Buest
-
-  if my_total == 21
-    puts "Congratulation #{name} HIT blackjack! #{name} you win!"
-  elsif my_total > 21
-    puts "Sorry, it looks like #{name} you buested"
-    exit
-    end
-  end
-
+if my_total == 21
+  puts "Congratulation #{name} HIT blackjack! #{name} you win!"
+elsif my_total > 21
+  puts "Sorry, it looks like #{name} you buested"
+  exit
+end
 
 # Dealer turn
-  if dealer_total == 21
-    puts "Sorry, dealer hit blackjack #{name} you lose!"
-    exit
-  end
+if dealer_total == 21
+  puts "Sorry, dealer hit blackjack #{name} you lose!"
+  exit
+end
 
-  while dealer_total < 17
-  # Hit
-    new_card = deck.pop
-    puts "Dealing new card for dealer: "
-    puts "=> #{new_card.join(" of ")}"
-    dealear_cards << new_card
-    dealer_total = calculate_total(dealear_cards)
-    puts "Dealer toatal is now: #{dealer_total}"
-    puts ""
+while dealer_total < 17
+# Hit
+  new_card = deck.pop
+  puts "Dealing new card for dealer: "
+  puts "=> #{new_card.join(" of ")}"
 
-  if dealer_total == 21
-    puts "Sorry,Dealer hit blackjack, #{name} you lose"
-    exit
-  elsif dealer_total > 21
-    puts "Congratulation,dealer buested! #{name} you win!"
-    exit
+  dealear_cards << new_card
+  dealer_total = calculate_total(dealear_cards)
+  puts "Dealer toatal is now: #{dealer_total}"
+  puts ""
+
+if dealer_total == 21
+  puts "Sorry,Dealer hit blackjack, #{name} you lose"
+  exit
+elsif dealer_total > 21
+  puts "Congratulation,dealer buested! #{name} you win!"
+  exit
   end
 end
 
 # compare hands
-  puts "Dealer's cards: "
-  dealear_cards.each do |card|
+puts "Dealer's cards: "
+dealear_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
-  end
-  puts "The Dealer's total is #{dealer_total}"
-  puts ""
+end
+puts "The Dealer's total is #{dealer_total}"
+puts ""
 
-  puts "#{name} cards: "
-  my_cards.each do |card|
+puts "#{name} cards: "
+my_cards.each do |card|
   puts "=> #{card[0]} of #{card[1]}"
-  end
-  puts "#{name}'s total is #{my_total}"
-  puts ""
-
+end
+puts "#{name}'s total is #{my_total}"
+puts ""
 
 if dealer_total > my_total
   puts "Sorry, dealer win!"
-  elsif dealer_total < my_total
+ elsif dealer_total < my_total
   puts "Congratulation #{name} you wins!"
-  else
+ else
   puts "Its tie!"
   end
 end
